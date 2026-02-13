@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Analizzatore Immobiliare</title>
+    <style>
+        body { font-family: Arial; margin: 40px; }
+        input { width: 400px; padding: 8px; }
+        button { padding: 8px 16px; }
+        .result { margin-top: 20px; padding: 15px; border: 1px solid #ccc; }
+    </style>
+</head>
+<body>
+
+<h2>Analizzatore Prezzo al Metro Quadro</h2>
+
+<form method="POST">
+    <input type="text" name="url" placeholder="Inserisci URL annuncio" required>
+    <button type="submit">Analizza</button>
+</form>
+
+{% if result %}
+<div class="result">
+    {% if result.error %}
+        <p style="color:red;">{{ result.error }}</p>
+    {% else %}
+        <p><strong>Zona:</strong> {{ result.location }}</p>
+        <p><strong>Prezzo annuncio:</strong> {{ result.price_mq }} €/mq</p>
+        <p><strong>Media OMI:</strong> {{ result.omi_avg }} €/mq</p>
+        <p><strong>Scostamento:</strong> {{ result.diff }} %</p>
+    {% endif %}
+</div>
+{% endif %}
+
+</body>
+</html>
